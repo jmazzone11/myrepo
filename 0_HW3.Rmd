@@ -1,0 +1,336 @@
+---
+title:  'Homework 3'
+subtitle: 'INFO 523'
+author:
+- name: Student -  Josie Mazzone
+  affiliation: Physiological Sciences, University of Arizona, Tucson, AZ
+- name: Instructor -  Cristian Román-Palacios
+  affiliation: School of Information, University of Arizona, Tucson, AZ
+tags: [R, RStudio, HW3]
+output: html_document
+
+---
+
+---------------
+
+### Objectives
+This homework is divided into two parts. The written portion aims for a general description of one of the two datasets used in the hands-on portion of the assignment. In the hands-on component of the assignment, students will be asked to perform data manipulation operations using either (1) `base` `R` or the (2) `tidyverse`.
+
+---------------
+
+#### Additional resources relevant to this HW
+- **R Markdown**: Please review the basic R Markdown cheat sheet in case you have any questions regarding formatting the HW: https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf.
+
+- **R**: Please review the basic `R` cheat sheet in case you have any questions regarding the programming language: https://www.soa.org/globalassets/assets/Files/Edu/2018/exam-pa-base-r.pdf.
+
+- **RStudio**: Additional cheat sheets written by RStudio to help with specific R packages: https://www.rstudio.com/resources/cheatsheets/
+
+
+### Scores and grading policies
+
+There is a very basic auto-grading system implemented at the end of the assignment. Use that workflow as a reference. **If you're confident that answer is correct but it's still marked as Incorrect by the autograder, please get in touch with the instructor.** Grades are **NOT exclusively based on your final answers**. I will be grading the overall structure and logic of your code. Feel free to use as many lines as you need to answer each of the questions. I also highly recommend and strongly encourage adding comments (`#`) to your code. Comments will certainly improve the reproducibility and readability of your submission. Commenting your code is also good coding practice. **Specifically for the course, you’ll get better feedback if the instructor is able to understand your code in detail.** 
+
+
+### Submission:
+Information on the deadline for this HW is posted in D2L.  Please get in touch with the instructor if you’re (i) having issues opening the assignment, (2) not understanding the questions or (3) having issues submitting your assignment. Note that late submissions are subject to a penalty (see late work policies in the Syllabus). By the deadline, you should turn in a a `RMD` file (this file) **AND** a rendered `HTML` (hint: knit your `rmd`; link: https://rmarkdown.rstudio.com/lesson-9.html). Answers to each question should be in the relevant block of code (see below). The instructor won't render your submission. **There's no need to rename your submission**. Make sure that you can correctly render your submission without errors before turning anything in. If a given block of code is causing issues and you didn’t get to fix it, please use `r eval=FALSE `the in the relevant block and add comments. **This assignment must be submitted through our GitHub Classroom before the deadline.**
+
+
+### Time commitment
+Please reach out if you’re taking more than ~18h to complete (1) this HW, (2) reading the book chapters, and (3) going over the lectures. I will be happy to provide accommodations if necessary. **Do not wait until the last minute to start working on this HW**. In most cases, working under pressure will certainly increase the time needed to answer each of these questions and the instructor might not be 100% available on Sundays to troubleshoot with you. Remember that you can sign up office hours with the instructor 3 times a week.
+
+
+### Looking for help?
+First, please go over the relevant readings for this week. Second, if you’re still struggling with any of the questions, do some independent research (e.g. stackoverflow is a wonderful resource). Don’t forget that your classmates will also be working on the same questions - reach out for help (check under the Discussion forum for folks looking to interact with other students in this class or start your own thread). Finally, the instructor will be happy to answer any questions during office hours. You can reach out to me by email (cromanpa94@arizona.edu) or simply schedule a 15 minute meeting through **Calendly** (https://calendly.com/cromanpa/15min). **Do not forget that the instructor holds office hours 3 times a week!!**
+
+
+---------------
+# Questions
+
+### Conceptual
+
+The conceptual questions outlined below are based on the following dataset: https://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones.
+
+Please answer the questions below in a few sentences (<300 words each). Save your answers as strings in the relevant objects (e.g. `q1`, `q2`, `q3`, `q4`). Use the structure outlined below in `q1.4.example`.
+
+```{r exampleQ1-4}
+q1.4.example <- "
+[Paragraph 1]
+[Paragraph 2]
+[Paragraph n]
+"
+```
+
+Please note that there's no need to provide extensive and detailed answers (i.e. <300 words). Just make sure that the main points that you're trying to make in relation to the question are clear.
+
+
+#### Question 1
+
+Briefly describe the dataset and explain how it has been used in previous analyses. 
+
+```{r}
+# BEGIN SOLUTION
+q1 <- "The dataset includes triaxial acceleration and velocity data for 30 individuals across 6
+conditions. These conditions were walking, walking upstairs, walking downstairs, sitting
+standing, and lying down. The measures were recorded with a smartphone's embedded accelerometer and gyroscope. Additional dataset values include time, activity type, and subject ID. This dataset has been used to assess how a multiclass support vector machine (SVM) can utilize data obtained from smartphone's sensors to identify actions performed by humans given observations about the acceleration and velocity. " 
+# END SOLUTION
+```
+
+
+#### Question 2
+
+List two questions that previous studies have asked using this dataset. Cite the relevant studies.
+
+```{r}
+# BEGIN SOLUTION
+q2 <- "[Anguita et al. (2012) asked if their Activity Recognition system, utilizing smartphone inertial sensors, could predict human activity better than traditional Support Vector Machine models.]
+[Anguita et al. (2013) asked if using a fixed-point arithmetic approach (MultiClass Hardware-Friendly Support Vector Machine) to evaluate Activity Recognition is as effective as traditional approaches which utilize floating-point arithmetic algorithms.]" 
+# END SOLUTION
+```
+
+
+#### Question 3
+
+There are two main folders in the dataset: training and testing. What are these files used for and what is their importance in Data Science in general?
+
+```{r}
+# BEGIN SOLUTION
+q3 <- "The training files are used to help train the model to recognize movement patterns. The test set is used to evaluate if the trained model is working. The test dataset is essentially a test for the model created using the training dataset."
+# END SOLUTION
+```
+
+
+#### Question 4
+
+Choose one paper from the “Relevant Papers” section in the website. State the question that was examined in the study. Briefly outline the methods used in the paper (e.g. algorithms). Was there any data cleaning step? Explain. List the main conclusions of the study. Finally, include at least two suggestions that you think might help improve the quality of the paper. 
+
+```{r}
+# BEGIN SOLUTION
+q4 <- "[Anguita et al. (2013) asked if using a fixed-point arithmetic approach (MultiClass Hardware-Friendly Support Vector Machine) to evaluate Activity Recognition is as effective as traditional approaches which utilize floating-point arithmetic algorithms.]
+[Their methodology included the use of the dataset described in Q1. 70% of the database was grouped into the training set whereas the remaining 30% was partioned into a test set. The signals were cleaned using noise filters (median filter, low-pass Butterworth filter w/ a cutoff frequency of 20 Hz). Additional low-pass filters were used for triaxial total acceleration. A fixed-width sliding window was applied to the acceleration time signals with a span of 2.56 seconds and a 50% overlap. Finally, 17 features were extracted from each window.]
+[The algorithms applied utilized a Multiclass HF-SVM model. The basic steps included: calcuating a Constrained Quadratic Programming minimization problem; classifying new patterns by applying SVM Feed-Forward Phase; a normalization process to be able to utilize fixed-point arithmetic; and a modification of the kernel K and input vector x. Overall, a Fixed-Point FFP formulation vector was used. To utilize as a multiclass approach, probability estimates for SVM classifiers were determined and an OVA method was utilized.]
+[The main conclusions were that using smartphone sensors is an efficient and effective approach for the classification of Activity Recognition during daily living. This method also utilizes less resources and less energy consumption in addition to a faster processing time while also maintaining similar performance to other traditional approaches.]
+[Two suggestions to improve the quality of the paper would be to note any differences that may be present across different populations involved in the initial data collection process. For example, if there are differences in men & women and the utilization of the model for these groups. Another suggestion would be to tie it back into the bigger picture in the conclusion. It did a good job of explaining in the conclusion the advantages of this technique over traditional approaches, but did not relate it back to why it is important to the general population.]"
+# END SOLUTION
+```
+
+
+### Applied
+
+Please answer the following questions using `R`. Feel free to use as many lines of code as you need. The final result should be stored in the object indicated under each question. I provide hints using either `base` `R` and or functions from the `tidyverse`. There's no need to follow these hints.
+
+
+#### Question 5
+
+We will be working with the following dataset: https://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones. This dataset was also used in the conceptual section of this homework.  **Please DO NOT push the dataset to your `GitHub` repo** (e.g. use `gitignore`). **You will be penalized (-2 points) if your final submission to `Github` includes the original files of the analyzed dataset**. All the files in this homework are structured such that the dataset is not pushed to GitHub. 
+
+Same as in the previous homeworks, answer the questions below by saving the final object in the relevant object. Feel free to also use as many steps or lines of code as you need to answer each of the questions. Please annotate your code.
+
+I'll provide some help to download the dataset to your working directory:
+
+```{r Do not modify this}
+library(here)
+library(downloader)
+if(! "UCI HAR Dataset" %in% list.files("data")){
+url <- "https://archive.ics.uci.edu/ml/machine-learning-databases/00240/UCI%20HAR%20Dataset.zip"
+download(url, dest=here("data","dataset.zip"), mode="wb") 
+unzip(here("data","dataset.zip"), exdir = here("data"))
+}
+```
+
+Once you have run the code above, the downloaded folder will be located under `data`. **Note that you cannot commit files that are >100 mb**. Please check the size of the files that you're trying to commit **before** commiting+pushing to GitHub. Now, please focus on the questions below. All the instructions in the following questions are relative to the `UCI HAR Dataset` folder.
+
+5.1.	Read the training set (`train/X_train.txt`) into `R` and name it `train`. Rename all the columns using the correct column name using the labels listed in the `train/features.txt` file. Make all column names unique. Save the resulting dataset as `q5.1`. Your answer should have `7352` rows and  `561` columns.
+
+```{r}
+# BEGIN SOLUTION
+#read in the features.txt and converted to a matrix. I'm not sure if this was necessary, but it was the only way I could get it to work.
+library(dplyr)
+colnm<-read.delim('data/UCI HAR Dataset/train/features.txt', header = FALSE, sep = " ")
+colnm2<-colnm%>%
+  select(V2)%>%
+  as.matrix()
+
+train<-read.table('data/UCI HAR Dataset/train/X_train.txt')#load the train data
+
+colnames(train) <- c(colnm2)#changed the columnnames to those defined in the features.txt which I named colnm2
+
+names(train) <- make.unique(names(train), sep="_")#made each column name unique
+
+any(duplicated(names(train)))#checked each name was unique
+
+q5.1 <- train
+  #Replace NULL with your final answer
+# END SOLUTION
+```
+
+*Hint: (`Base` `R`): `make.unique()` *.
+
+
+5.2.	Create a new column named `discrete` in `q5.1`. This column should include the content of `train/y_train.txt`. The resulting object should be saved in an object named `q5.2`. The resulting object should differ from `q5.1` by a single column.
+
+```{r}
+# BEGIN SOLUTION
+#read in y_train data. Again, not sure if it needs to be a matrix, but it didn't seem to work otherwise.
+y_train<-read.delim('data/UCI HAR Dataset/train/y_train.txt', header = FALSE, sep = " ")%>%
+  as.matrix()
+
+train$discrete<-c(y_train)#add a column name called discrete and fill with y_train values
+
+q5.2 <- train 
+# END SOLUTION
+```
+
+*Hint: (tidyverse): mutate() and if_else() *
+
+
+5.3.	Using `q5.2`, remove the `angle(X,gravityMean)` column. The resulting object should be named `q5.3`. The resulting object should have the same dimensions as `q5.1`, but not the exactly the same features.
+
+```{r}
+# BEGIN SOLUTION
+
+which( colnames(train)=="angle(X,gravityMean)" )#figure out the column number of the desired column to remove
+
+q5.3 <- train[ ,-559]#remove the column with it's column number
+# END SOLUTION
+```
+
+*Hint: (base): grep() or grepl() *
+
+
+5.4.	Next, reorder the columns in `q5.3` such that the columns with mean values (i.e. pattern *`mean`*) appear first in the dataset. Store the results in `q5.4`. 
+
+```{r}
+# BEGIN SOLUTION
+train_select<-q5.3%>%
+  select(contains('mean'))#select trains with columns containing mean
+train_deselect<-train%>%
+  select(everything(),-contains("mean"))#select trains with columns not containing mean
+q5.4 <- cbind(train_select, train_deselect) #bind these together with the mean dataset added first
+# END SOLUTION
+```
+
+*Hint: (tidyverse): select() and contains() *
+
+
+5.5.	Using `q5.3`, select the first *4* rows of every column summarizing the *`angle`* between vectors (i.e. colum names including the string *`angle`*). Save the resulting dataset as `q5.5`. Your resulting dataset should have `4` rows and `6` columns.
+
+```{r}
+# BEGIN SOLUTION
+q5.5 <- q5.3%>%
+  select(contains('angle'))%>% #selects columns containing the chr angle
+  slice_head(n=4) #selects the first n rows of data
+
+# END SOLUTION
+```
+
+*Hint: (base): grep() or grepl() *
+
+
+5.6.	Using `q5.3`, remove all the rows with *at least* one observation falling outside of quantiles `0.025` and `0.975` of *at least one* column in the dataset. Note that these observations are referred as "extreme" in Question 5.7. Store the resulting object in `q5.6`. Do not use the full dataset for this question - please sample *ONLY* the first `1000` rows and `20` columns. Your answer should have `644` rows and  `20` columns.
+
+*One option (using `base` `r`): Estimate the `0.025` and `0.975` quantiles for each column in `q5.3`. Save the resulting data.frame to the environment (e.g. quantileDataset object). Next, for a given row in `q5.3`, sample the a column and test if the sampled value in `q5.3` (i.e. [row n,column n]) is within the interval estimated for that  column in `quantileDataset`. If the value in `q5.3` is outside of the interval (`quantileDataset`), replace the cell with an `NA`. If the value in `q5.3` is not outside of the interval, keep the original value for that cell in `q5.3`. Do the same for each observation (i.e. column) in each row. Finally, drop all the `NAs` in your dataset. Please do NOT overwrite your answer for `q5.3`*
+
+```{r}
+# BEGIN SOLUTION
+library(tidyr)
+train_subset<-train[1:1000,1:20]#create a subset of only the first 1000 rows & 20 columns
+
+q5.6 <- train_subset%>%
+  gather(key, value) %>%#changed the data to longer format
+  group_by(key) %>%#grouped the rows by key type
+  mutate(q95 = quantile(value, 0.975), q25 = quantile(value, 0.025), row = row_number())%>%#add three columns; two quantiles, and a row number
+  filter(value >= q25&value<=q95)%>%#filter rows that fall outside of the quantile set
+  select(-c(q25,q95))%>%#remove the additional columns
+  spread(key, value) %>%#change back to wide format
+  select(-row)%>%#remove the row column
+  drop_na()#remove NAs
+# END SOLUTION
+```
+
+*Hint: (base): for(), if(), na.omit() *
+
+*Hint: (tidyverse): mutate(), across(), if_else(), na.omit()*
+
+
+#### Question 6 (extra credit, 1 point each)
+
+Read in the `data/population-figures-by-country-csv.csv` file that is included in your repo into `R` and simply call it `data`. This dataset contains population information on almost every country between `1960` and `2016`. Make sure that you remove line `257` (i.e. country `World`) before you get started with the questions below.
+
+6.1.	First, rename the second column of `data` to `code`. Now, reshape `data` from wide to long format. Sort the resulting dataset by country first and then by year. Next, for each country, keep only the oldest and most recent years with non-missing values for population sizes. Based these two years and corresponding population values, calculate the following three columns: (1) `Diff_year` (difference in time between years), (2) `Diff_growth` (difference in population size between years), and (3) `Rate_percent` = ((`Diff_growth` / `Diff_year`)/`oldest_year`). The resulting dataset should only include only the following columns: `Country`, `code`, `Diff_year`, `Diff_growth`, and `Rate_percent.` Save the resulting object in `q6.1`. Feel free to use as many lines of code as needed.
+
+```{r}
+# BEGIN SOLUTION
+data<-read.csv('data/population-figures-by-country-csv.csv')#load the population data
+colnames(data)[2] <- "code"#change column 2 name to code
+pop_long<-data%>%
+  pivot_longer(!c("Country", "code"), names_to = "Year", values_to="Population")%>%#convert to long format
+  group_by(Country, Year)
+
+pop_long$Year<-gsub("Year_", "", pop_long$Year)#remove "Year_" from Year column values
+pop_long$Year<-as.integer(pop_long$Year)#convert Year column to integer
+
+
+y1<-pop_long%>%
+  group_by(Country)%>%
+  na.omit()%>%
+  slice(c(1, n()))#select the first and last row of data grouped by Country
+
+q6.1 <-y1%>%
+  group_by(Country)%>%
+  mutate(oldest_year= first(Year), Diff_year = Year-lag(
+    Year,default=first(Year)), Diff_growth=Population-lag(
+    Population,default=first(Population)), Rate_percent = ((Diff_growth / Diff_year)/oldest_year))%>%#add the three rows of data. I was unsure if "oldest" meant the most or least recent year.
+  na.omit()%>%
+  select(c(Country, code, Diff_year, Diff_growth, Rate_percent))
+  
+# END SOLUTION
+```
+
+
+6.2.	Split `q6.1` into a continent-based list. Save the result in `q6.2`. Use only the countries that overlap with the following dataset `data/country-and-continent-codes-list.csv`. Please provide two ideas on how this new list could be used to perform calculations with functions within the `apply` family.
+
+```{r}
+# BEGIN SOLUTION
+country_list<-read.csv("data/country-and-continent-codes-list.csv")#read continent list data
+colnames(country_list)[5]<-"code"#change column 5 to code
+colnames(country_list)[1]<-"Continent"#change column 1 to Continent
+country_list<-country_list%>%
+  select(Continent, code)#select only applicable sections
+q6.2 <- merge(q6.1, country_list, by="code")%>%
+  arrange(Continent) #merge country and continent sets together and arrange by Continent 
+#apply could be used as follows to sum the Diff_year, Diff_growth, & Rate_percent columns
+#s <- apply(w[,3:5], 2, sum)#this would name the object holding these values s
+#tapply could be used to do a similar function but grouping the data by Continents
+
+
+# END SOLUTION
+```
+
+
+
+## Some quick feedback
+
+**Do NOT modify this section.** Note that the auto-grader tests whether objects in questions 1-4 include any string, and examine if dimensions (i.e. number of columns, rows, or length) of the objects in questions 5 and 6 match a reference.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, comment=NA}
+##Please make sure the following packages are installed
+library(digest); library(here); library(rmarkdown)
+load(here("tests", "ref_WS.RData"))
+rm(list=setdiff(ls(), c("q1", "q2", "q3", "q4", "q5.1", "q5.2",
+                       "q5.3", "q5.4", "q5.5", "q5.6", 
+                       "q6.1", "q6.2"))) #Prevent saving extra objects...
+save.image(here("tests", "answers_WS.RData"))
+.grade(submission = list(q1, q2, q3, q4, q5.1, q5.2,
+                       q5.3, q5.4, q5.5, q5.6, 
+                       q6.1, q6.2
+                       )
+       )
+
+cat("Last updated on:", format(Sys.time(),usetz = TRUE))
+```
+
+```{r echo= FALSE, message=FALSE, warning=FALSE, include=FALSE, results='hide'}
+render("README.Rmd", quiet = T)
+```
+
+
